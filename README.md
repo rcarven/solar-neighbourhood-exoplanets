@@ -40,8 +40,8 @@ solar-neighbourhood-exoplanets/
 ├── data/
 │   └── Exoplanets_SolarNeighbourhood_Catalogue.csv   # Master catalogue
 ├── notebooks/
-│   ├── 01_ProcesoDatos.ipynb      # Data pipeline (merging, corrections, export)
-│   └── 02_GenerarEstetica.ipynb   # Interactive HTML table generator
+│   ├── data_pipeline.ipynb      # Data pipeline (merging, corrections, export)
+│   └── table_generator.ipynb   # Interactive HTML table generator
 ├── docs/
 │   └── index.html                 # Interactive table (hosted via GitHub Pages)
 └── requirements.txt
@@ -63,8 +63,8 @@ pip install -r requirements.txt
 ```
 
 **3. Run the notebooks in order**
-- `01_ProcesoDatos.ipynb` — requires the raw input files (see note below)
-- `02_GenerarEstetica.ipynb` — reads the master CSV and outputs the HTML table
+- `data_pipeline.ipynb` — requires the raw input files (see note below)
+- `table_generator.ipynb` — reads the master CSV and outputs the HTML table
 
 > ⚠️ **Note:** The raw input files (`eu_actualizado_cif2025.csv`, `eu_cif2025corr.fit`,
 > `distancias_gaia.csv`, etc.) are not included in this repository due to their size
