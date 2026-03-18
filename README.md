@@ -58,8 +58,16 @@ cd solar-neighbourhood-exoplanets
 ```
 
 **2. Install dependencies**
+
+With pip:
 ```bash
 pip install -r requirements.txt
+```
+
+With conda (recommended):
+```bash
+conda env create -f environment.yml
+conda activate solar-neighbourhood
 ```
 
 **3. Run the notebooks in order**
@@ -77,7 +85,7 @@ pip install -r requirements.txt
 | Parameter | Value |
 |-----------|-------|
 | Total planets | 129 |
-| Host stars | ~100 |
+| Host stars | 64 |
 | Max distance | < 10 pc |
 | Detection methods | RV, Transit, Transit+RV, Astrometry, TTV |
 | Stellar data source | Cif25 (78 systems) + Exoplanet.eu |
