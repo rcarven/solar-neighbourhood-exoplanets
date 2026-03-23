@@ -86,7 +86,7 @@ conda activate solar-neighbourhood
 |-----------|-------|
 | Total planets | 129 |
 | Host stars | 64 |
-| Max distance | < 10 pc |
+| Max distance | 10 pc |
 | Detection methods | RV, Transit, Transit+RV, Astrometry, TTV |
 | Stellar data source | Cif25 (78 systems) + Exoplanet.eu |
 
