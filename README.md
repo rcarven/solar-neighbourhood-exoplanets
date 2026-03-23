@@ -8,7 +8,7 @@
 
 A curated, multi-source catalogue of **129 confirmed exoplanets** orbiting stars
 within 10 parsecs of the Sun. Built as part of an undergraduate research project
-at the Universidad Complutense de Madrid.
+at the Centro de Astrobiología (CSIC-INTA) as an student intern from Universidad Complutense de Madrid.
 
 > 🔗 **[Explore the interactive table →](https://rcarven.github.io/solar-neighbourhood-exoplanets)**
 
