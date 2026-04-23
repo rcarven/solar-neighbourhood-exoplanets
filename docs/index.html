@@ -5,114 +5,177 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Exoplanetas en la Vecindad Solar y Visibilidad ELT-PCS</title>
     <style>
-        /* Estilos generales para que quede limpio y profesional */
+        *, *::before, *::after { box-sizing: border-box; }
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f7f6;
-            color: #333;
+            background-color: #0d1b2a;
+            color: #e0e6ef;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
+
+        /* ── Header ── */
         .header {
-            background-color: #1a252c; /* Azul oscuro astronómico */
+            background: linear-gradient(135deg, #0d1b2a 0%, #1a3a5c 60%, #0d2e4a 100%);
             color: white;
-            padding: 30px 20px;
-            text-align: center;
-        }
-        .header h1 { margin: 0 0 10px 0; }
-        .header p { margin: 0; font-size: 1.1em; opacity: 0.9; }
-        
-        /* Estilos de las pestañas */
-        .tab-container {
-            max-width: 1200px;
-            margin: 20px auto;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            padding: 36px 40px 28px;
+            border-bottom: 2px solid #2a6496;
+            position: relative;
             overflow: hidden;
         }
+        .header::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                radial-gradient(circle, rgba(255,255,255,0.08) 1px, transparent 1px);
+            background-size: 30px 30px;
+            pointer-events: none;
+        }
+        .header-inner {
+            position: relative;
+            z-index: 1;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+        .header h1 {
+            margin: 0 0 8px;
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: 0.02em;
+        }
+        .header p {
+            margin: 0;
+            font-size: 1.05em;
+            opacity: 0.75;
+            font-style: italic;
+        }
+
+        /* ── Tab wrapper: full-width ── */
+        .tab-wrapper {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            padding: 0 20px 30px;
+        }
+
+        /* ── Tab bar ── */
         .tabs {
             display: flex;
-            background-color: #e2e8f0;
+            gap: 4px;
+            padding: 16px 0 0;
+            border-bottom: 2px solid #2a6496;
         }
         .tab-button {
-            flex: 1;
-            background-color: inherit;
-            border: none;
+            background: transparent;
+            border: 1px solid transparent;
+            border-bottom: none;
+            border-radius: 6px 6px 0 0;
             outline: none;
             cursor: pointer;
-            padding: 15px 20px;
-            font-size: 16px;
-            font-weight: bold;
-            color: #4a5568;
-            transition: 0.3s;
+            padding: 11px 22px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #8ab0cc;
+            transition: background 0.2s, color 0.2s;
+            white-space: nowrap;
         }
-        .tab-button:hover { background-color: #cbd5e0; }
+        .tab-button:hover {
+            background: rgba(42, 100, 150, 0.25);
+            color: #c8dff0;
+        }
         .tab-button.active {
-            background-color: white;
-            color: #2b6cb0;
-            border-bottom: 3px solid #2b6cb0;
+            background: #1a3a5c;
+            color: #7dd3fc;
+            border-color: #2a6496;
+            border-bottom-color: #1a3a5c; /* hides bottom border to merge with content */
+            position: relative;
+            top: 2px;
         }
-        
-        /* Contenido de las pestañas (los iframes) */
+
+        /* ── Tab content ── */
         .tab-content {
-            display: none; /* Oculto por defecto */
-            padding: 20px;
+            display: none;
+            flex: 1;
+            flex-direction: column;
+            background: #1a3a5c;
+            border: 1px solid #2a6496;
+            border-top: none;
+            border-radius: 0 0 8px 8px;
+            overflow: hidden;
         }
         .tab-content.active {
-            display: block; /* Solo se muestra el activo */
+            display: flex;
+        }
+        .tab-description {
+            padding: 12px 20px;
+            font-size: 0.88rem;
+            color: #94b8cc;
+            background: #112435;
+            border-bottom: 1px solid #2a6496;
+            font-style: italic;
+            margin: 0;
         }
         iframe {
             width: 100%;
-            height: 750px; /* Altura generosa para ver bien gráficos y tablas */
+            flex: 1;
+            height: 80vh;
+            min-height: 600px;
             border: none;
-            border-radius: 4px;
+            display: block;
         }
     </style>
 </head>
 <body>
 
     <div class="header">
-        <h1>Exoplanetas en la Vecindad Solar</h1>
-        <p>Catálogo interactivo y simulaciones de observación instrumental</p>
+        <div class="header-inner">
+            <h1>🔭 Exoplanetas en la Vecindad Solar</h1>
+            <p>Catálogo interactivo y simulaciones de observación instrumental · ELT-PCS</p>
+        </div>
     </div>
 
-    <div class="tab-container">
+    <div class="tab-wrapper">
         <div class="tabs">
-            <button class="tab-button active" onclick="abrirPestana(event, 'Catalogo')">1. Catálogo de Exoplanetas</button>
-            <button class="tab-button" onclick="abrirPestana(event, 'ELT')">2. Visibilidad ELT-PCS</button>
+            <button class="tab-button active" onclick="abrirPestana(event, 'Catalogo')">
+                1. Catálogo de Exoplanetas
+            </button>
+            <button class="tab-button" onclick="abrirPestana(event, 'ELT')">
+                2. Visibilidad ELT-PCS
+            </button>
+            <button class="tab-button" onclick="abrirPestana(event, 'Comparativa')">
+                3. Comparativa Sistemas Planetarios
+            </button>
         </div>
 
         <div id="Catalogo" class="tab-content active">
-            <p><em>Tabla interactiva con los parámetros de la muestra seleccionada.</em></p>
-            <iframe src="exoplanets_catalogue.html"></iframe>
+            <p class="tab-description">Tabla interactiva con los parámetros de la muestra seleccionada.</p>
+            <iframe src="exoplanets_catalogue.html" title="Catálogo de Exoplanetas"></iframe>
         </div>
 
         <div id="ELT" class="tab-content">
-            <p><em>Simulación de visibilidad adaptada del código GRIP para el instrumento ELT-PCS.</em></p>
-            <iframe src="exoplanets_visualization.html"></iframe>
+            <p class="tab-description">Simulación de visibilidad adaptada del código GRIP para el instrumento ELT-PCS.</p>
+            <iframe src="exoplanets_visualization.html" title="Visibilidad ELT-PCS"></iframe>
         </div>
+
+        <div id="Comparativa" class="tab-content">
+            <p class="tab-description">Comparativa detallada de sistemas planetarios de la vecindad solar.</p>
+            <iframe src="comparativa_sistemas_planetarios.html" title="Comparativa Sistemas Planetarios"></iframe>
+        </div>
+
     </div>
 
     <script>
         function abrirPestana(evt, nombrePestana) {
-            var i, tabcontent, tablinks;
-            
-            // Oculta todo el contenido
-            tabcontent = document.getElementsByClassName("tab-content");
-            for (i = 0; i < tabcontent.length; i++) {
-                tabcontent[i].classList.remove("active");
-            }
-            
-            // Quita la clase "active" de todos los botones
-            tablinks = document.getElementsByClassName("tab-button");
-            for (i = 0; i < tablinks.length; i++) {
-                tablinks[i].classList.remove("active");
-            }
-            
-            // Muestra el contenido actual y añade la clase "active" al botón que se ha pulsado
-            document.getElementById(nombrePestana).classList.add("active");
-            evt.currentTarget.classList.add("active");
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.tab-button').forEach(el => el.classList.remove('active'));
+            document.getElementById(nombrePestana).classList.add('active');
+            evt.currentTarget.classList.add('active');
         }
     </script>
 
