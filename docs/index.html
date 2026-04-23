@@ -5,10 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Exoplanetas en la Vecindad Solar y Visibilidad ELT-PCS</title>
     <style>
-        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        *, *::before, *::after { box-sizing: border-box; }
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
             background-color: #0d1b2a;
             color: #e0e6ef;
             min-height: 100vh;
@@ -29,27 +31,31 @@
             content: '';
             position: absolute;
             inset: 0;
-            background-image: radial-gradient(circle, rgba(255,255,255,0.08) 1px, transparent 1px);
+            background-image:
+                radial-gradient(circle, rgba(255,255,255,0.08) 1px, transparent 1px);
             background-size: 30px 30px;
             pointer-events: none;
         }
         .header-inner {
             position: relative;
             z-index: 1;
+            max-width: 1600px;
+            margin: 0 auto;
         }
         .header h1 {
+            margin: 0 0 8px;
             font-size: 2rem;
             font-weight: 700;
             letter-spacing: 0.02em;
-            margin-bottom: 8px;
         }
         .header p {
+            margin: 0;
             font-size: 1.05em;
             opacity: 0.75;
             font-style: italic;
         }
 
-        /* ── Tab wrapper ── */
+        /* ── Tab wrapper: full-width ── */
         .tab-wrapper {
             flex: 1;
             display: flex;
@@ -79,69 +85,49 @@
             transition: background 0.2s, color 0.2s;
             white-space: nowrap;
         }
-        .tab-button:hover { background: rgba(42,100,150,0.25); color: #c8dff0; }
+        .tab-button:hover {
+            background: rgba(42, 100, 150, 0.25);
+            color: #c8dff0;
+        }
         .tab-button.active {
-            background: #0d1b2a;
+            background: #1a3a5c;
             color: #7dd3fc;
             border-color: #2a6496;
-            border-bottom-color: #0d1b2a;
+            border-bottom-color: #1a3a5c; /* hides bottom border to merge with content */
             position: relative;
             top: 2px;
         }
 
-        /* ── Tab panels ── */
+        /* ── Tab content ── */
         .tab-content {
             display: none;
+            flex: 1;
             flex-direction: column;
-            background: #0d1b2a;
+            background: #1a3a5c;
             border: 1px solid #2a6496;
             border-top: none;
             border-radius: 0 0 8px 8px;
             overflow: hidden;
         }
-        .tab-content.active { display: flex; }
-
+        .tab-content.active {
+            display: flex;
+        }
         .tab-description {
-            padding: 10px 20px;
+            padding: 12px 20px;
             font-size: 0.88rem;
             color: #94b8cc;
             background: #112435;
             border-bottom: 1px solid #2a6496;
             font-style: italic;
-            flex-shrink: 0;
+            margin: 0;
         }
-
-        /* ── Loading spinner ── */
-        .loading-panel {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 80px 20px;
-            gap: 18px;
-            color: #8ab0cc;
-        }
-        .spinner {
-            width: 44px;
-            height: 44px;
-            border: 4px solid rgba(122,178,220,0.2);
-            border-top-color: #7dd3fc;
-            border-radius: 50%;
-            animation: spin 0.8s linear infinite;
-        }
-        @keyframes spin { to { transform: rotate(360deg); } }
-
-        /* ── Injected content ──
-           White background so sub-pages render with their own styles.
-           overflow-x: auto handles wide charts gracefully.           */
-        .panel-content {
-            background: white;
+        iframe {
             width: 100%;
+            flex: 1;
+            height: 80vh;
             min-height: 600px;
-        }
-        .injected-root {
-            width: 100%;
-            overflow-x: auto;
+            border: none;
+            display: block;
         }
     </style>
 </head>
@@ -156,107 +142,41 @@
 
     <div class="tab-wrapper">
         <div class="tabs">
-            <button class="tab-button active" onclick="abrirPestana(event,'Catalogo')">1. Catálogo de Exoplanetas</button>
-            <button class="tab-button"        onclick="abrirPestana(event,'ELT')">2. Visibilidad ELT-PCS</button>
-            <button class="tab-button"        onclick="abrirPestana(event,'Comparativa')">3. Comparativa Sistemas Planetarios</button>
+            <button class="tab-button active" onclick="abrirPestana(event, 'Catalogo')">
+                1. Catálogo de Exoplanetas
+            </button>
+            <button class="tab-button" onclick="abrirPestana(event, 'ELT')">
+                2. Visibilidad ELT-PCS
+            </button>
+            <button class="tab-button" onclick="abrirPestana(event, 'Comparativa')">
+                3. Comparativa Sistemas Planetarios
+            </button>
         </div>
 
         <div id="Catalogo" class="tab-content active">
             <p class="tab-description">Tabla interactiva con los parámetros de la muestra seleccionada.</p>
-            <div class="panel-content" id="panel-Catalogo"></div>
+            <iframe src="exoplanets_catalogue.html" title="Catálogo de Exoplanetas"></iframe>
         </div>
 
         <div id="ELT" class="tab-content">
             <p class="tab-description">Simulación de visibilidad adaptada del código GRIP para el instrumento ELT-PCS.</p>
-            <div class="panel-content" id="panel-ELT"></div>
+            <iframe src="exoplanets_visualization.html" title="Visibilidad ELT-PCS"></iframe>
         </div>
 
         <div id="Comparativa" class="tab-content">
             <p class="tab-description">Comparativa detallada de sistemas planetarios de la vecindad solar.</p>
-            <div class="panel-content" id="panel-Comparativa"></div>
+            <iframe src="exoplanets_system_architecture.html" title="Comparativa Sistemas Planetarios"></iframe>
         </div>
+
     </div>
 
     <script>
-        const TAB_FILES = {
-            'Catalogo':    'exoplanets_catalogue.html',
-            'ELT':         'exoplanets_visualization.html',
-            'Comparativa': 'exoplanets_system_architecture.html'
-        };
-
-        const loaded = {};
-
-        async function cargarPanel(tabId) {
-            if (loaded[tabId]) return;
-
-            const panel = document.getElementById('panel-' + tabId);
-            panel.innerHTML = `
-                <div class="loading-panel">
-                    <div class="spinner"></div>
-                    <span>Cargando visualización…</span>
-                </div>`;
-
-            try {
-                const response = await fetch(TAB_FILES[tabId]);
-                if (!response.ok) throw new Error('HTTP ' + response.status);
-                const html = await response.text();
-
-                const parser = new DOMParser();
-                const doc = parser.parseFromString(html, 'text/html');
-
-                panel.innerHTML = '';
-
-                // 1. Inject <style> and external CSS from <head>
-                doc.head.querySelectorAll('style, link[rel="stylesheet"]').forEach(el => {
-                    panel.appendChild(el.cloneNode(true));
-                });
-
-                // 2. Inject body content
-                const root = document.createElement('div');
-                root.className = 'injected-root';
-                root.innerHTML = doc.body.innerHTML;
-
-                // Preserve any inline styles or classes the sub-page sets on <body>
-                if (doc.body.getAttribute('style')) {
-                    root.setAttribute('style', doc.body.getAttribute('style'));
-                }
-                if (doc.body.className) {
-                    doc.body.className.split(' ').filter(Boolean).forEach(c => root.classList.add(c));
-                }
-
-                panel.appendChild(root);
-
-                // 3. Re-execute <script> tags (they don't run via innerHTML)
-                [...doc.querySelectorAll('script')].forEach(orig => {
-                    const s = document.createElement('script');
-                    [...orig.attributes].forEach(a => s.setAttribute(a.name, a.value));
-                    if (!orig.src) s.textContent = orig.textContent;
-                    // Append to <head> so libs (Plotly, D3, etc.) become globally available
-                    document.head.appendChild(s);
-                });
-
-                loaded[tabId] = true;
-
-            } catch (err) {
-                panel.innerHTML = `
-                    <div class="loading-panel">
-                        <span style="color:#f87171;">⚠ No se pudo cargar: ${TAB_FILES[tabId]}</span>
-                        <small style="color:#8ab0cc;">${err.message}</small>
-                    </div>`;
-                console.error('Error cargando tab', tabId, err);
-            }
-        }
-
-        function abrirPestana(evt, nombre) {
+        function abrirPestana(evt, nombrePestana) {
             document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
             document.querySelectorAll('.tab-button').forEach(el => el.classList.remove('active'));
-            document.getElementById(nombre).classList.add('active');
+            document.getElementById(nombrePestana).classList.add('active');
             evt.currentTarget.classList.add('active');
-            cargarPanel(nombre);
         }
-
-        // Load the default tab on page ready
-        document.addEventListener('DOMContentLoaded', () => cargarPanel('Catalogo'));
     </script>
 
 </body>
