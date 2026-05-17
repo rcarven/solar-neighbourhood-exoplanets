@@ -262,6 +262,175 @@
             transition: color 0.2s ease;
         }
         footer a:hover { color: #ff007f; }
+
+        /* ════════════════════════════════════════════════════════════
+           RESPONSIVE — TABLET  (≤ 900px)
+           Only layout adjustments; colours, fonts and logic unchanged.
+           ════════════════════════════════════════════════════════════ */
+        @media (max-width: 900px) {
+ 
+            /* Header: reduce horizontal padding so title has room */
+            .header {
+                padding: 14px 20px;
+            }
+            /* Leave room for the GitHub icon on the right */
+            .header-inner {
+                padding-right: 52px;
+            }
+            .header h1 {
+                font-size: 1.35rem;
+            }
+            .github-link {
+                right: 20px;
+                top: 14px;
+            }
+            .github-link svg {
+                width: 32px;
+                height: 32px;
+            }
+ 
+            /* Tabs: reduce padding, allow horizontal scroll on narrow viewports */
+            .tabs-container {
+                padding: 8px 20px 0;
+                overflow-x: auto;
+                overflow-y: visible;
+                -webkit-overflow-scrolling: touch;
+                /* hide scrollbar visually but keep it functional */
+                scrollbar-width: none;
+            }
+            .tabs-container::-webkit-scrollbar { display: none; }
+ 
+            /* Footer: reduce horizontal padding */
+            footer {
+                padding: 10px 20px;
+            }
+        }
+ 
+ 
+        /* ════════════════════════════════════════════════════════════
+           RESPONSIVE — MOBILE  (≤ 600px)
+           ════════════════════════════════════════════════════════════ */
+        @media (max-width: 600px) {
+ 
+            /* Body: use dynamic viewport height so the browser's address
+               bar doesn't clip the footer on iOS/Android. dvh falls back
+               gracefully to vh on older engines. */
+            body {
+                min-height: 100dvh;
+                max-height: 100dvh;
+            }
+ 
+            /* Header */
+            .header {
+                padding: 12px 16px;
+            }
+            .header-inner {
+                padding-right: 48px;
+            }
+            .header h1 {
+                font-size: 1.1rem;
+                letter-spacing: -0.3px;
+            }
+            .header p {
+                font-size: 0.8rem;
+            }
+            .github-link {
+                right: 16px;
+                top: 12px;
+            }
+            .github-link svg {
+                width: 28px;
+                height: 28px;
+            }
+ 
+            /* Project details panel */
+            .project-details {
+                margin-top: 10px;
+                padding: 4px 12px;
+            }
+            .project-details summary {
+                font-size: 0.85rem;
+            }
+            .intro-text {
+                font-size: 0.84rem;
+            }
+ 
+            /* Stats: force 2×2 grid on small screens */
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 8px;
+            }
+            .stat-value {
+                font-size: 1.25rem;
+            }
+            .stat-card {
+                padding: 10px 8px;
+            }
+ 
+            /* Download button: full width on mobile */
+            .download-btn {
+                align-self: stretch;
+                text-align: center;
+                font-size: 0.85rem;
+            }
+ 
+            /* Tabs */
+            .tabs-container {
+                padding: 6px 16px 0;
+                gap: 4px;
+            }
+            .tab-button {
+                padding: 9px 10px;
+                font-size: 0.82rem;
+            }
+ 
+            /* Footer: stack vertically */
+            footer {
+                padding: 10px 16px;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 4px;
+                font-size: 0.78rem;
+            }
+ 
+            /* Visibility iframe: keep min-width for the 1100px Plotly chart;
+               users can pan horizontally with touch on mobile */
+            #Visibility {
+                -webkit-overflow-scrolling: touch;
+            }
+            #Visibility iframe {
+                /* Slightly reduced: mobile users will pan — no need for extra margin */
+                min-width: 1100px;
+            }
+ 
+            /* Catalogue and Architecture: enable smooth touch scroll inside iframe */
+            #Catalogue,
+            #Architecture {
+                -webkit-overflow-scrolling: touch;
+            }
+        }
+ 
+ 
+        /* ════════════════════════════════════════════════════════════
+           RESPONSIVE — SMALL MOBILE  (≤ 380px)
+           ════════════════════════════════════════════════════════════ */
+        @media (max-width: 380px) {
+ 
+            .header h1 {
+                font-size: 0.98rem;
+            }
+            .header p {
+                display: none; /* hide subtitle to save vertical space */
+            }
+            .github-link svg {
+                width: 24px;
+                height: 24px;
+            }
+            .tab-button {
+                padding: 8px 8px;
+                font-size: 0.78rem;
+            }
+        }
     </style>
 </head>
 <body>
