@@ -218,6 +218,41 @@
         footer a:hover {
             color: #ff007f;
         }
+
+        /* ── Diseño Responsivo (Móviles y Tablets) ── */
+        @media (max-width: 768px) {
+            .header {
+                padding: 15px 20px; /* Reducimos los márgenes laterales */
+            }
+            .header h1 {
+                font-size: 1.3rem; /* Título un poco más pequeño */
+                margin-right: 45px; /* Evitamos que el texto pise el logo de GitHub */
+            }
+            .github-link {
+                top: 15px;
+                right: 20px;
+            }
+            .github-link svg {
+                width: 32px; /* Reducimos un poco el logo en móvil */
+                height: 32px;
+            }
+            .tabs-container {
+                padding: 10px 15px 0;
+                overflow-x: auto; /* Permite deslizar las pestañas lateralmente con el dedo */
+                white-space: nowrap;
+                -webkit-overflow-scrolling: touch; /* Scroll suave en iOS */
+            }
+            .tab-button {
+                padding: 10px 15px;
+                font-size: 0.9rem;
+            }
+            footer {
+                flex-direction: column; /* Apilamos los textos del footer en vertical */
+                gap: 10px;
+                text-align: center;
+                padding: 15px 20px;
+            }
+        }        
     </style>
 </head>
 <body>
