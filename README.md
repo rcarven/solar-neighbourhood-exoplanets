@@ -41,7 +41,7 @@ pip install -r requirements.txt
 * `01_data_pipeline.ipynb` — Merges raw data and outputs the master CSV.
 * `02_table_generator.ipynb` — Renders the interactive DataTables view.
 * `03_systems_architecture.ipynb` — Generates the HZ architecture plots.
-* `04_ELT_Visibility_SolarNeighbourhood.ipynb` — Computes max angular separation/contrast and generates the ELT-PCS interactive scatter plot.
+* `04_PCS_Visibility_SolarNeighbourhood.ipynb` — Computes max angular separation/contrast and generates the ELT-PCS interactive scatter plot.
 
 > **⚠️ Note:** Raw input catalogues (e.g., *eu_actualizado_cif2025.csv*, *distancias_gaia.csv*) are excluded from this repository due to size and licensing constraints. The notebooks are configured to read from the provided processed master catalogue in the `/data` folder where applicable.
 
