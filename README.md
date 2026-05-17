@@ -1,108 +1,65 @@
-# 🌌 Exoplanet Catalogue in the Solar Neighbourhood (d < 10 pc)
+# 🌌 Exoplanetary Architectures & ELT-PCS Visibility in the Solar Neighbourhood (d < 10 pc)
 
 ![Python](https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white)
 ![Jupyter](https://img.shields.io/badge/Jupyter-F37626?style=flat&logo=jupyter&logoColor=white)
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
-![Planets](https://img.shields.io/badge/Planets-129-blueviolet)
+![Planets](https://img.shields.io/badge/Planets-130-blueviolet)
 ![Status](https://img.shields.io/badge/Status-Active-brightgreen)
 
-A curated, multi-source catalogue of **129 confirmed exoplanets** orbiting stars
-within 10 parsecs of the Sun. Built as part of an undergraduate research project
-at the Centro de Astrobiología (CSIC-INTA) as an student intern from Universidad Complutense de Madrid.
+An interactive, multi-source data analysis project exploring exoplanets orbiting stars within 10 parsecs of the Sun. This repository contains the full pipeline, from data curation to interactive web visualization—built, developed during a research internship at the **Centro de Astrobiología (CAB, CSIC-INTA)** as an undergraduate student from **Universidad Complutense de Madrid (UCM)**.
 
-> 🔗 **[Explore the interactive table →](https://rcarven.github.io/solar-neighbourhood-exoplanets)**
+🔗 **[Explore the Interactive Dashboard Here](https://rcarven.github.io/solar-neighbourhood-exoplanets/)**
 
----
+## 📋 About the Project
 
-## 📋 About the Catalogue
+This work goes beyond a simple database by providing a comprehensive analysis of planetary architectures and their future direct-imaging detectability. We structured the project around three main pillars:
 
-The catalogue integrates and cross-matches data from three primary sources:
-
-| Source | Role |
-|--------|------|
-| [Exoplanet.eu](http://exoplanet.eu) | Base catalogue |
-| [NASA Exoplanet Archive](https://exoplanetarchive.ipac.caltech.edu/) | Additional planets & parameters |
-| [Cifuentes et al. 2025 (Cif25)](https://ui.adsabs.harvard.edu/abs/2025A%26A...693A.228C/abstract) | Stellar parameters (Teff, mass, radius, SpType) |
-
-Stellar distances were recomputed from Gaia DR3 / Hipparcos parallaxes via SIMBAD.
-Manual corrections for 3 removed planets and 1,334 edited parameters were applied
-from the literature.
-
-**Key parameters** (126 columns per planet): orbital period, semi-major axis,
-eccentricity, mass, radius, detection method, stellar properties, and full
-reference traceability per parameter.
-
----
+1. **Master Catalogue:** We synchronized and cross-matched data from Exoplanet.eu, the NASA Exoplanet Archive, and the Cifuentes et al. 2025 (Cif25) stellar catalogue. We recomputed distances using Gaia DR3 parallaxes and applied rigorous manual corrections from the literature.
+2. **System Architectures:** Visual mapping of planetary orbits against conservative and optimistic Habitable Zones (HZ).
+3. **ELT-PCS Observability:** We developed an interactive simulation to evaluate the direct-imaging detectability of these nearby exoplanets using the upcoming Planetary Camera and Spectrograph (PCS) for the Extremely Large Telescope (ELT), building upon the visibility framework of Markus Kasper.
 
 ## 🗂️ Repository Structure
-```
-solar-neighbourhood-exoplanets/
-├── data/
-│   └── Exoplanets_SolarNeighbourhood_Catalogue.csv   # Master catalogue
-├── notebooks/
-│   ├── data_pipeline.ipynb      # Data pipeline (merging, corrections, export)
-│   └── table_generator.ipynb   # Interactive HTML table generator
-├── docs/
-│   └── index.html                 # Interactive table (hosted via GitHub Pages)
-└── requirements.txt
-```
 
----
+* `/data`: Contains the curated master catalogue (`Exoplanets_SolarNeighbourhood_Catalogue.csv`). 
+* `/notebooks`: The Python data analysis pipelines used to process the data and generate the visualizations.
+* `/docs`: HTML files deployed via GitHub Pages to host the interactive web dashboard.
 
-## 🚀 How to Use
+## 🚀 How to Reproduce the Analysis
 
-**1. Clone the repository**
+1. **Clone the repository**
 ```bash
-git clone https://github.com/rcarven/solar-neighbourhood-exoplanets.git
+git clone [https://github.com/rcarven/solar-neighbourhood-exoplanets.git](https://github.com/rcarven/solar-neighbourhood-exoplanets.git)
 cd solar-neighbourhood-exoplanets
 ```
 
-**2. Install dependencies**
-
-With pip:
+2. **Install dependencies**
 ```bash
 pip install -r requirements.txt
 ```
 
-With conda (recommended):
-```bash
-conda env create -f environment.yml
-conda activate solar-neighbourhood
-```
+3. **Run the notebooks in order**
+* `01_data_pipeline.ipynb` — Merges raw data and outputs the master CSV.
+* `02_table_generator.ipynb` — Renders the interactive DataTables view.
+* `03_systems_architecture.ipynb` — Generates the HZ architecture plots.
+* `04_ELT_Visibility_SolarNeighbourhood.ipynb` — Computes max angular separation/contrast and generates the ELT-PCS interactive scatter plot.
 
-**3. Run the notebooks in order**
-- `data_pipeline.ipynb` — requires the raw input files (see note below)
-- `table_generator.ipynb` — reads the master CSV and outputs the HTML table
+> **⚠️ Note:** Raw input catalogues (e.g., *eu_actualizado_cif2025.csv*, *distancias_gaia.csv*) are excluded from this repository due to size and licensing constraints. The notebooks are configured to read from the provided processed master catalogue in the `/data` folder where applicable.
 
-> ⚠️ **Note:** The raw input files (`eu_actualizado_cif2025.csv`, `eu_cif2025corr.fit`,
-> `distancias_gaia.csv`, etc.) are not included in this repository due to their size
-> and licensing. The processed master catalogue (`data/`) is provided directly.
-
----
-
-## 📊 Catalogue Statistics
+## 📊 Quick Statistics
 
 | Parameter | Value |
-|-----------|-------|
-| Total planets | 129 |
-| Host stars | 64 |
-| Max distance | 10 pc |
-| Detection methods | RV, Transit, Transit+RV, Astrometry, TTV |
-| Stellar data source | Cif25 (78 systems) + Exoplanet.eu |
+| :--- | :--- |
+| **Total planets** | 130 (Confirmed, Candidates, Discarded tracked) |
+| **Max distance** | 10 pc |
+| **Detection methods** | RV, Transit, Astrometry, TTV |
+| **Primary Data Sources** | Cif25, Exoplanet.eu, NASA Exoplanet Archive, Gaia DR3 |
 
----
+## 📄 License & Acknowledgements
 
-## 📄 License & Citation
-
-This project is licensed under the **MIT License** — see [LICENSE](LICENSE) for details.
-
-The data itself is derived from public catalogues. If you use this catalogue in
-your work, please also cite the original sources (Exoplanet.eu, NASA Exoplanet
-Archive, Cifuentes et al. 2025).
-
----
+This project is open-source and available under the MIT License. 
+The data is derived from public catalogues. If you utilize this curated dataset or pipeline, please cite the original sources appropriately. Special thanks to Dr. J.A. Caballero for his guidance during this research.
 
 ## 👤 Author
 
-**Rafael Carmona** — Physics student, Universidad Complutense de Madrid
+**Rafael Carmona Vendoiro** — Physics Undergraduate, Universidad Complutense de Madrid  
 📧 rcarmo02@ucm.es · [GitHub](https://github.com/rcarven)
