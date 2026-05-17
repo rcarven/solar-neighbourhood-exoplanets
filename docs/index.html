@@ -13,10 +13,11 @@
             padding: 0;
             background-color: #080b11; /* Fondo espacio profundo */
             color: #e2e8f0;
-            height: 100vh; /* Forzar pantalla completa */
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
-            overflow: hidden; /* Elimina la doble barra de scroll general */
+            overflow-y: auto; /* Habilita la barra de navegación vertical general de la web */
+            overflow-x: hidden;
         }
 
         /* ── Header Estilo Panel de Control ── */
@@ -107,7 +108,6 @@
             position: relative;
             overflow: hidden;
         }
-        /* Bordes de colores diferentes para cada tarjeta */
         .stat-card.cyan { border-left: 4px solid #00e5ff; }
         .stat-card.purple { border-left: 4px solid #9d4edd; }
         .stat-card.pink { border-left: 4px solid #ff007f; }
@@ -177,23 +177,18 @@
             text-shadow: 0 0 8px rgba(0, 229, 255, 0.4);
         }
 
-        /* ── Contenedor Principal (Flex-Grow) ── */
+        /* ── Contenedor Principal (Flujo Natural Adaptable) ── */
         .main-content {
             flex: 1;
-            position: relative;
             background: #080b11;
-            display: flex;
-            flex-direction: column;
-            min-height: 0; /* Evita que el contenedor desborde el footer */
+            width: 100%;
+            position: relative;
         }
         
         .tab-content {
             display: none;
-            flex: 1;
             width: 100%;
-            height: 100%;
-            overflow-x: auto; /* Permite scroll horizontal en todas las pestañas si hace falta */
-            overflow-y: hidden;
+            overflow-x: auto; /* Mantiene el scroll horizontal local para proteger las leyendas anchas */
             -webkit-overflow-scrolling: touch;
         }
         
@@ -203,22 +198,22 @@
         
         iframe {
             width: 100%;
-            height: 100%;
+            height: 800px; /* Altura fija y generosa para evitar que los gráficos se estrujen en vertical */
             border: none;
             background: transparent;
             display: block;
         }
 
-        /* ── Fix de espacio para Plotly (Pestaña Visibilidad) ── */
+        /* ── Protección Horizontal Estricta para la Leyenda de Plotly ── */
         #Visibility iframe {
-            min-width: 1200px; /* Obligamos a que el gráfico y la leyenda tengan al menos 1200px de espacio libre */
+            min-width: 1280px; /* Garantiza el espacio horizontal exacto para la gráfica y la leyenda sin colapsar */
         }
         
-        /* ── Footer Fijo inferior ── */
+        /* ── Footer Estilizado ── */
         footer {
             background: #05070b;
             border-top: 1px solid #1e293b;
-            padding: 12px 40px;
+            padding: 18px 40px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -237,32 +232,35 @@
         /* ── Diseño Responsivo (Móviles y Tablets) ── */
         @media (max-width: 768px) {
             .header {
-                padding: 15px 20px; /* Reducimos los márgenes laterales */
+                padding: 15px 20px;
             }
             .header h1 {
-                font-size: 1.3rem; /* Título un poco más pequeño */
-                margin-right: 45px; /* Evitamos que el texto pise el logo de GitHub */
+                font-size: 1.3rem;
+                margin-right: 45px;
             }
             .github-link {
                 top: 15px;
                 right: 20px;
             }
             .github-link svg {
-                width: 32px; /* Reducimos un poco el logo en móvil */
+                width: 32px;
                 height: 32px;
             }
             .tabs-container {
                 padding: 10px 15px 0;
-                overflow-x: auto; /* Permite deslizar las pestañas lateralmente con el dedo */
+                overflow-x: auto;
                 white-space: nowrap;
-                -webkit-overflow-scrolling: touch; /* Scroll suave en iOS */
+                -webkit-overflow-scrolling: touch;
             }
             .tab-button {
                 padding: 10px 15px;
                 font-size: 0.9rem;
             }
+            iframe {
+                height: 650px; /* Un poco más compacto en pantallas puramente móviles */
+            }
             footer {
-                flex-direction: column; /* Apilamos los textos del footer en vertical */
+                flex-direction: column;
                 gap: 10px;
                 text-align: center;
                 padding: 15px 20px;
@@ -356,6 +354,9 @@
             evt.currentTarget.classList.add('active');
         }
     </script>
+
+</body>
+</html>
 
 </body>
 </html>
