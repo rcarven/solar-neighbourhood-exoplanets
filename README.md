@@ -56,11 +56,13 @@ pip install -r requirements.txt
 
 ## 📚 References & Acknowledgements
 
-This project relies heavily on the work of the broader astronomical community. If you utilize this repository or its data pipelines, please consider citing the following original sources:
+*This research has made use of the NASA Exoplanet Archive, which is operated by the California Institute of Technology, under contract with the National Aeronautics and Space Administration under the Exoplanet Exploration Program.*
+
+If you utilize this repository or its data pipelines, please consider citing the following original sources:
 
 **Primary Data Sources & Frameworks:**
-* **Exoplanet.eu:** Schneider, J. et al. (2011). *Defining and cataloging exoplanets: the exoplanet.eu database*. A&A.
 * **NASA Exoplanet Archive:** Christiansen, J. L. et al. (2025). *The NASA Exoplanet Archive and Exoplanet Follow-up Observing Program*. PSJ.
+* **Exoplanet.eu:** Schneider, J. et al. (2011). *Defining and cataloging exoplanets: the exoplanet.eu database*. A&A.
 * **Stellar Parameters:** Cifuentes, C. et al. (2025). *CARMENES input catalogue of M dwarfs: IX*. A&A.
 * **Distances & Parallaxes:** Gaia Collaboration et al. (2016, 2023). *The Gaia mission* & *Gaia Data Release 3*. A&A.
 
