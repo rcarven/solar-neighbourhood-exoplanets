@@ -199,6 +199,17 @@
             background: transparent;
         }
 
+        /* ── Ajuste de seguridad para la leyenda de Visibilidad ── */
+        #Visibility {
+            overflow-x: auto; /* Permite scroll horizontal solo en esta pestaña si la pantalla es estrecha */
+            height: 100%;
+            -webkit-overflow-scrolling: touch;
+        }
+        #Visibility iframe {
+            min-width: 1180px; /* Forzamos el ancho mínimo necesario para gráfico + leyenda completa */
+            height: 100%;
+        }
+        
         /* ── Footer Fijo inferior ── */
         footer {
             background: #05070b;
