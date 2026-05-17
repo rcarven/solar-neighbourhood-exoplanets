@@ -7,29 +7,35 @@
     <style>
         *, *::before, *::after { box-sizing: border-box; }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        html, body {
+            height: 100%;
             margin: 0;
             padding: 0;
-            background-color: #080b11; /* Fondo espacio profundo */
-            color: #e2e8f0;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            overflow-y: auto; /* Habilita la barra de navegación vertical general de la web */
-            overflow-x: hidden;
         }
 
-        /* ── Header Estilo Panel de Control ── */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #080b11;
+            color: #e2e8f0;
+            display: flex;
+            flex-direction: column;
+            /* Removed overflow:hidden — let the browser manage scroll naturally */
+            min-height: 100vh;
+            max-height: 100vh;
+            overflow: hidden;
+        }
+
+        /* ── Header ── */
         .header {
             background: linear-gradient(135deg, #0b0f19 0%, #111827 100%);
-            padding: 20px 40px;
-            border-bottom: 2px solid #9d4edd; /* Línea púrpura de separación */
+            padding: 16px 40px;
+            border-bottom: 2px solid #9d4edd;
             position: relative;
+            flex-shrink: 0; /* never shrink header */
         }
         .header h1 {
             margin: 0;
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             font-weight: 600;
             letter-spacing: -0.5px;
             background: linear-gradient(45deg, #00e5ff, #9d4edd);
@@ -37,107 +43,103 @@
             -webkit-text-fill-color: transparent;
         }
         .header p {
-            margin: 4px 0 0;
-            font-size: 0.95rem;
+            margin: 3px 0 0;
+            font-size: 0.9rem;
             color: #64748b;
         }
 
-        /* ── Botón de GitHub ── */
+        /* ── GitHub Button ── */
         .github-link {
             position: absolute;
-            top: 20px;
+            top: 16px;
             right: 40px;
-            color: #00e5ff; /* Cián neón */
+            color: #00e5ff;
             transition: color 0.3s ease, transform 0.3s ease;
             z-index: 100;
         }
         .github-link:hover {
-            color: #ff007f; /* Cambia a rosa neón al pasar el ratón */
+            color: #ff007f;
             transform: scale(1.1);
         }
         .github-link svg {
-            width: 40px;
-            height: 40px;
+            width: 36px;
+            height: 36px;
             fill: currentColor;
         }
 
-        /* ── Micro-Introducción Desplegable ── */
+        /* ── Project Details Dropdown ── */
         .project-details {
-            margin-top: 15px;
+            margin-top: 12px;
             background: #111723;
             border: 1px solid #222f47;
             border-radius: 8px;
-            padding: 5px 15px;
+            padding: 4px 15px;
         }
         .project-details summary {
             cursor: pointer;
             font-weight: 600;
             color: #00e5ff;
             outline: none;
-            padding: 8px 0;
+            padding: 7px 0;
             user-select: none;
         }
-        .project-details summary:hover {
-            color: #ff007f;
-        }
+        .project-details summary:hover { color: #ff007f; }
         .details-content {
-            padding: 15px 0 10px;
+            padding: 12px 0 8px;
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 12px;
             border-top: 1px dashed #222f47;
         }
         .intro-text {
             margin: 0;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             line-height: 1.5;
             color: #94a3b8;
         }
 
-        /* ── Panel de Métricas Rápidas ── */
+        /* ── Stats Grid ── */
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 12px;
         }
         .stat-card {
             background: #161f30;
-            padding: 15px;
+            padding: 12px;
             border-radius: 6px;
             text-align: center;
-            position: relative;
-            overflow: hidden;
         }
-        .stat-card.cyan { border-left: 4px solid #00e5ff; }
-        .stat-card.purple { border-left: 4px solid #9d4edd; }
-        .stat-card.pink { border-left: 4px solid #ff007f; }
-        
+        .stat-card.cyan  { border-left: 4px solid #00e5ff; }
+        .stat-card.purple{ border-left: 4px solid #9d4edd; }
+        .stat-card.pink  { border-left: 4px solid #ff007f; }
+
         .stat-value {
-            font-size: 1.6rem;
+            font-size: 1.5rem;
             font-weight: bold;
             display: block;
             margin-bottom: 2px;
         }
-        .stat-card.cyan .stat-value { color: #00e5ff; }
+        .stat-card.cyan   .stat-value { color: #00e5ff; }
         .stat-card.purple .stat-value { color: #9d4edd; }
-        .stat-card.pink .stat-value { color: #ff007f; }
-        
+        .stat-card.pink   .stat-value { color: #ff007f; }
+
         .stat-label {
-            font-size: 0.8rem;
+            font-size: 0.78rem;
             color: #64748b;
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
 
-        /* ── Botón Descarga CSV ── */
+        /* ── Download Button ── */
         .download-btn {
             align-self: flex-start;
             background: transparent;
             color: #ff007f;
             border: 1px solid #ff007f;
-            padding: 8px 16px;
+            padding: 7px 14px;
             border-radius: 4px;
-            font-size: 0.9rem;
+            font-size: 0.88rem;
             font-weight: 600;
             cursor: pointer;
             text-decoration: none;
@@ -149,123 +151,117 @@
             box-shadow: 0 0 10px rgba(255, 0, 127, 0.5);
         }
 
-        /* ── Barra de Pestañas (Tabs) ── */
+        /* ── Tabs Bar ── */
         .tabs-container {
             background: #0b0f19;
-            padding: 10px 40px 0;
+            padding: 8px 40px 0;
             display: flex;
-            gap: 10px;
+            gap: 8px;
             border-bottom: 1px solid #1e293b;
+            flex-shrink: 0; /* never shrink tabs */
         }
         .tab-button {
             background: transparent;
             border: none;
             color: #64748b;
-            padding: 12px 20px;
-            font-size: 0.95rem;
+            padding: 10px 18px;
+            font-size: 0.92rem;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.2s ease;
             border-bottom: 3px solid transparent;
+            white-space: nowrap;
         }
-        .tab-button:hover {
-            color: #00e5ff;
-        }
+        .tab-button:hover { color: #00e5ff; }
         .tab-button.active {
             color: #00e5ff;
             border-bottom: 3px solid #00e5ff;
             text-shadow: 0 0 8px rgba(0, 229, 255, 0.4);
         }
 
-        /* ── Contenedor Principal (Flujo Natural Adaptable) ── */
+        /* ── Main Content Area ── */
+        /*
+         * flex: 1 + min-height: 0 are the key combination:
+         * min-height: 0 prevents the flex child from overflowing its parent,
+         * so the iframe truly fills the remaining space without pushing footer out.
+         */
         .main-content {
-            flex: 1;
-            background: #080b11;
-            width: 100%;
+            flex: 1 1 0;
+            min-height: 0;
             position: relative;
+            background: #080b11;
         }
-        
+
+        /* Each tab panel fills the main-content area completely */
         .tab-content {
             display: none;
-            width: 100%;
-            overflow-x: auto; /* Mantiene el scroll horizontal local para proteger las leyendas anchas */
-            -webkit-overflow-scrolling: touch;
+            position: absolute;
+            inset: 0; /* top/right/bottom/left: 0 */
         }
-        
         .tab-content.active {
             display: block;
         }
-        
-        iframe {
-            width: 100%;
-            height: 800px; /* Altura fija y generosa para evitar que los gráficos se estrujen en vertical */
-            border: none;
-            background: transparent;
-            display: block;
+
+        /*
+         * Catalogue & Architecture: content scrolls inside the iframe naturally.
+         * No overflow needed on the wrapper.
+         */
+        #Catalogue,
+        #Architecture {
+            overflow: hidden;
         }
 
-        /* ── Protección Horizontal Estricta para la Leyenda de Plotly ── */
-        #Visibility iframe {
-            min-width: 1280px; /* Garantiza el espacio horizontal exacto para la gráfica y la leyenda sin colapsar */
+        /*
+         * Visibility: the Plotly chart has a hardcoded width of 1100px.
+         * We allow horizontal scrolling on this tab so the legend is never clipped.
+         */
+        #Visibility {
+            overflow-x: auto;
+            overflow-y: hidden;
         }
-        
-        /* ── Footer Estilizado ── */
+
+        /*
+         * All iframes: display:block removes the default inline gap (4px)
+         * at the bottom. Width/height fill the tab panel.
+         */
+        iframe {
+            display: block;
+            width: 100%;
+            height: 100%;
+            border: none;
+            background: transparent;
+        }
+
+        /*
+         * Visibility iframe: set a minimum width matching the chart's fixed
+         * 1100px width plus some room for the legend and padding.
+         * The tab-content wrapper will scroll horizontally if the viewport
+         * is narrower than this.
+         */
+        #Visibility iframe {
+            min-width: 1160px;
+        }
+
+        /* ── Footer ── */
         footer {
             background: #05070b;
             border-top: 1px solid #1e293b;
-            padding: 18px 40px;
+            padding: 10px 40px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-size: 0.85rem;
+            font-size: 0.82rem;
             color: #475569;
+            flex-shrink: 0; /* never shrink footer */
+            flex-wrap: wrap;
+            gap: 6px;
         }
         footer a {
             color: #00e5ff;
             text-decoration: none;
             transition: color 0.2s ease;
         }
-        footer a:hover {
-            color: #ff007f;
-        }
-
-        /* ── Diseño Responsivo (Móviles y Tablets) ── */
-        @media (max-width: 768px) {
-            .header {
-                padding: 15px 20px;
-            }
-            .header h1 {
-                font-size: 1.3rem;
-                margin-right: 45px;
-            }
-            .github-link {
-                top: 15px;
-                right: 20px;
-            }
-            .github-link svg {
-                width: 32px;
-                height: 32px;
-            }
-            .tabs-container {
-                padding: 10px 15px 0;
-                overflow-x: auto;
-                white-space: nowrap;
-                -webkit-overflow-scrolling: touch;
-            }
-            .tab-button {
-                padding: 10px 15px;
-                font-size: 0.9rem;
-            }
-            iframe {
-                height: 650px; /* Un poco más compacto en pantallas puramente móviles */
-            }
-            footer {
-                flex-direction: column;
-                gap: 10px;
-                text-align: center;
-                padding: 15px 20px;
-            }
-        }        
+        footer a:hover { color: #ff007f; }
     </style>
 </head>
 <body>
@@ -275,10 +271,20 @@
             <h1>🔭 Exoplanets in the Solar Neighbourhood</h1>
             <p>Interactive catalogue and instrumental observability simulations &middot; ELT-PCS</p>
         </div>
-        
-        <a href="https://github.com/rcarven/solar-neighbourhood-exoplanets" target="_blank" rel="noopener noreferrer" class="github-link" aria-label="Ver código en GitHub">
+
+        <a href="https://github.com/rcarven/solar-neighbourhood-exoplanets"
+           target="_blank" rel="noopener noreferrer"
+           class="github-link" aria-label="Ver código en GitHub">
             <svg viewBox="0 0 16 16" aria-hidden="true">
-                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
+                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38
+                         0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13
+                         -.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66
+                         .07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15
+                         -.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0
+                         1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56
+                         .82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0
+                         1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8
+                         c0-4.42-3.58-8-8-8z"></path>
             </svg>
         </a>
 
@@ -286,9 +292,12 @@
             <summary>📊 View Project Overview &amp; Quick Statistics</summary>
             <div class="details-content">
                 <p class="intro-text">
-                    This workstation integrates multi-source astronomical archives to analyze confirmed and candidate exoplanets within 10 parsecs of the Sun. We synchronized data pipelines to evaluate planetary system architectures and simulate instrument observability limits for the future Extremely Large Telescope (ELT-PCS).
+                    This workstation integrates multi-source astronomical archives to analyze confirmed
+                    and candidate exoplanets within 10 parsecs of the Sun. We synchronized data pipelines
+                    to evaluate planetary system architectures and simulate instrument observability limits
+                    for the future Extremely Large Telescope (ELT-PCS).
                 </p>
-                
+
                 <div class="stats-grid">
                     <div class="stat-card cyan">
                         <span class="stat-value">130</span>
@@ -308,7 +317,8 @@
                     </div>
                 </div>
 
-                <a href="https://raw.githubusercontent.com/rcarven/solar-neighbourhood-exoplanets/main/data/Exoplanets_SolarNeighbourhood_Catalogue.csv" class="download-btn" target="_blank">
+                <a href="https://raw.githubusercontent.com/rcarven/solar-neighbourhood-exoplanets/main/data/Exoplanets_SolarNeighbourhood_Catalogue.csv"
+                   class="download-btn" target="_blank">
                     📥 Download Master CSV Dataset
                 </a>
             </div>
@@ -317,28 +327,35 @@
 
     <div class="tabs-container">
         <button class="tab-button active" onclick="openTab(event, 'Catalogue')">🗂️ Master Catalogue</button>
-        <button class="tab-button" onclick="openTab(event, 'Visibility')">👁️ ELT-PCS Visibility</button>
-        <button class="tab-button" onclick="openTab(event, 'Architecture')">🌌 System Architectures</button>
+        <button class="tab-button"        onclick="openTab(event, 'Visibility')">👁️ ELT-PCS Visibility</button>
+        <button class="tab-button"        onclick="openTab(event, 'Architecture')">🌌 System Architectures</button>
     </div>
 
     <div class="main-content">
         <div id="Catalogue" class="tab-content active">
-            <iframe src="exoplanets_catalogue.html" title="Interactive Catalogue Table"></iframe>
+            <iframe src="exoplanets_catalogue.html"
+                    title="Interactive Catalogue Table"
+                    loading="lazy"></iframe>
         </div>
 
         <div id="Visibility" class="tab-content">
-            <iframe src="exoplanets_visibility.html" title="ELT-PCS Visibility Plotly Simulation"></iframe>
+            <iframe src="exoplanets_visibility.html"
+                    title="ELT-PCS Visibility Plotly Simulation"
+                    loading="lazy"
+                    scrolling="no"></iframe>
         </div>
 
         <div id="Architecture" class="tab-content">
-            <iframe src="exoplanets_system_architecture.html" title="Planetary Systems Architecture Comparison"></iframe>
+            <iframe src="exoplanets_system_architecture.html"
+                    title="Planetary Systems Architecture Comparison"
+                    loading="lazy"></iframe>
         </div>
     </div>
 
     <footer>
         <div>
-            Developed by <strong>Rafael Carmona Vendoiro</strong> &middot; 
-            <a href="mailto:rcarmo02@ucm.es">rcarmo02@ucm.es</a> &middot; 
+            Developed by <strong>Rafael Carmona Vendoiro</strong> &middot;
+            <a href="mailto:rcarmo02@ucm.es">rcarmo02@ucm.es</a> &middot;
             <a href="https://github.com/rcarven" target="_blank" rel="noopener noreferrer">GitHub Profile</a>
         </div>
         <div>
@@ -354,9 +371,6 @@
             evt.currentTarget.classList.add('active');
         }
     </script>
-
-</body>
-</html>
 
 </body>
 </html>
