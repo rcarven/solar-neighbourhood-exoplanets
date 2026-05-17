@@ -54,7 +54,27 @@ pip install -r requirements.txt
 | **Detection methods** | RV, Transit, Astrometry, TTV |
 | **Primary Data Sources** | Cif25, Exoplanet.eu, NASA Exoplanet Archive, Gaia DR3 |
 
-## 📄 License & Acknowledgements
+## 📚 References & Acknowledgements
+
+This project relies heavily on the work of the broader astronomical community. If you utilize this repository or its data pipelines, please consider citing the following original sources:
+
+**Primary Data Sources & Frameworks:**
+* **Exoplanet.eu:** Schneider, J. et al. (2011). *Defining and cataloging exoplanets: the exoplanet.eu database*. A&A.
+* **NASA Exoplanet Archive:** Christiansen, J. L. et al. (2025). *The NASA Exoplanet Archive and Exoplanet Follow-up Observing Program*. PSJ.
+* **Stellar Parameters:** Cifuentes, C. et al. (2025). *CARMENES input catalogue of M dwarfs: IX*. A&A.
+* **Distances & Parallaxes:** Gaia Collaboration et al. (2016, 2023). *The Gaia mission* & *Gaia Data Release 3*. A&A.
+
+**Models & Code Implementations:**
+* **Habitable Zones:** Compute limits based on the conservative and optimistic definitions by Kopparapu, R. K. et al. (2013, 2014).
+* **Mass-Radius Relations:** Theoretical radii and planet classifications are calculated via the piecewise empirical relations implemented in Jared Males' [mxlib framework](https://jaredmales.github.io/mxlib-doc/), derived from Rogers, L. A. (2015), Marcy, G. W. et al. (2014), and Fortney, J. J. et al. (2007, 2010).
+* **ELT-PCS Observability Calculations:** Angular separations and reflected-light contrasts are simulated using the Python orbital solutions framework developed by Pearce, L. A., Males, J. R., & Limbach, M. A. (2025).
+* **Instrument Specifications:** The detectability threshold and contrast curves for the ELT Planetary Camera and Spectrograph are adapted from the roadmap by Kasper, M. et al. (2021).
+
+**Software & Tools:**
+* **TOPCAT:** Taylor, M. B. (2005).
+* Data analysis and interactive visualizations were developed using `pandas`, `numpy`, `plotly`, and `astropy` (Astropy Collaboration).
+
+## 📄 License
 
 This project is open-source and available under the MIT License. 
 The data is derived from public catalogues. If you utilize this curated dataset or pipeline, please cite the original sources appropriately. Special thanks to Dr. J.A. Caballero for his guidance during this research.
