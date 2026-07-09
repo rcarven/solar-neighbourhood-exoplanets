@@ -16,7 +16,7 @@ This work goes beyond a simple database by providing a comprehensive analysis of
 
 1. **Master Catalogue:** We synchronized and cross-matched data from Exoplanet.eu, the NASA Exoplanet Archive, and the Cifuentes et al. 2025 (Cif25) stellar catalogue. We recomputed distances using Gaia DR3 parallaxes and applied rigorous manual corrections from the literature.
 2. **System Architectures:** Visual mapping of planetary orbits against conservative and optimistic Habitable Zones (HZ).
-3. **ELT-PCS Observability:** We developed an interactive simulation to evaluate the direct-imaging detectability of these nearby exoplanets using the upcoming Planetary Camera and Spectrograph (PCS) for the Extremely Large Telescope (ELT), building upon the visibility framework of Markus Kasper.
+3. **ELT-PCS Observability:** We developed an interactive simulation to evaluate the direct-imaging detectability of these nearby exoplanets using the upcoming Planetary Camera and Spectrograph (PCS) for the Extremely Large Telescope (ELT), building upon the visibility framework of Markus Kasper et al. 2021.
 
 ## 🗂️ Repository Structure
 
