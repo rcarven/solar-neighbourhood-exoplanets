@@ -6,7 +6,7 @@
 ![Planets](https://img.shields.io/badge/Planets-130-blueviolet)
 ![Status](https://img.shields.io/badge/Status-Active-brightgreen)
 
-An interactive, multi-source data analysis project exploring exoplanets orbiting stars within 10 parsecs of the Sun. This repository contains the full pipeline, from data curation to interactive web visualization—built, developed during a research internship at the **Centro de Astrobiología (CAB, CSIC-INTA)** as an undergraduate student from **Universidad Complutense de Madrid (UCM)**.
+An interactive, multi-source data analysis project exploring exoplanets orbiting stars within 10 parsecs of the Sun. This repository contains the full pipeline, from data curation to interactive web visualization, developed during a research internship at the **Centro de Astrobiología (CAB, CSIC-INTA)** as an undergraduate student from **Universidad Complutense de Madrid (UCM)**.
 
 🔗 **[Explore the Interactive Dashboard Here](https://rcarven.github.io/solar-neighbourhood-exoplanets/)**
 
